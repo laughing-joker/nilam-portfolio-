@@ -1,63 +1,102 @@
-import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import heroBg from '@/assets/hero-bg.jpg';
+import { useState, useEffect, useRef } from "react";
+import { Button } from "@/components/ui/button";
+import heroVideo from "@/assets/heroVideo.mp4";
 
 const Hero = () => {
   const [scrollY, setScrollY] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      const handleLoadedMetadata = () => {
+        if (video.duration > 32) {
+          video.currentTime = 30;
+        }
+        video.play();
+      };
+
+      const handleTimeUpdate = () => {
+        if (video.currentTime >= 32) {
+          video.currentTime = 30;
+        }
+      };
+
+      video.addEventListener("loadedmetadata", handleLoadedMetadata);
+      video.addEventListener("timeupdate", handleTimeUpdate);
+
+      return () => {
+        video.removeEventListener("loadedmetadata", handleLoadedMetadata);
+        video.removeEventListener("timeupdate", handleTimeUpdate);
+      };
+    }
   }, []);
 
   const scrollToContact = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Hero Background */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ 
-          backgroundImage: `url(${heroBg})`,
-          backgroundPosition: 'center 30%', // Focus on upper portion for face visibility
-          transform: `translateY(${scrollY * 0.5}px)`
-        }}
-      />
-      
+      {/* Hero Video Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <video
+          ref={videoRef}
+          src={heroVideo}
+          autoPlay
+          muted
+          playsInline
+          className="w-full h-full object-cover object-center"
+          style={{ transform: `translateY(${scrollY * 0.5}px)` }}
+        />
+      </div>
+
       {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-hero" />
-      
+
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         <div className="space-y-6 animate-fade-in">
-          {/* Name */}
           <h1 className="font-heading text-6xl md:text-8xl font-bold tracking-wider">
             <span className="hero-title">NILAM</span>
-            <br />
-            <span className="hero-title">ABDUL</span>
+
+            <span className="hero-title"> ABDUL</span>
           </h1>
-          
+
           {/* Subtitle */}
-          <div className="space-y-2 animate-fade-up" style={{ animationDelay: '0.3s' }}>
-            <p className="text-xl md:text-2xl text-foreground/90 font-light tracking-wide">
+          <div
+            className="flex flex-wrap justify-center items-center gap-4 animate-fade-up"
+            style={{ animationDelay: "0.3s" }}
+          >
+            <span className="text-lg md:text-2xl text-gold font-medium tracking-wide px-4 py-2 rounded border border-gold/30 bg-black/20 backdrop-brightness-110 shadow-lg">
               Video Vixen
-            </p>
-            <div className="w-24 h-px bg-gold mx-auto" />
-            <p className="text-xl md:text-2xl text-foreground/90 font-light tracking-wide">
+            </span>
+
+            <span className="text-gold text-2xl">|</span>
+
+            <span className="text-lg md:text-2xl text-gold font-medium tracking-wide px-4 py-2 rounded border border-gold/30 bg-black/20 backdrop-brightness-110 shadow-lg">
               Commercial Model
-            </p>
-            <div className="w-24 h-px bg-gold mx-auto" />
-            <p className="text-xl md:text-2xl text-foreground/90 font-light tracking-wide">
+            </span>
+
+            <span className="text-gold text-2xl">|</span>
+
+            <span className="text-lg md:text-2xl text-gold font-medium tracking-wide px-4 py-2 rounded border border-gold/30 bg-black/20 backdrop-brightness-110 shadow-lg">
               Creative Talent
-            </p>
+            </span>
           </div>
-          
+
           {/* CTA Button */}
-          <div className="pt-8 animate-fade-up" style={{ animationDelay: '0.6s' }}>
-            <Button 
+          <div
+            className="pt-8 animate-fade-up"
+            style={{ animationDelay: "0.6s" }}
+          >
+            <Button
               onClick={scrollToContact}
               variant="outline"
               size="lg"
@@ -68,7 +107,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      
+
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-float">
         <div className="w-6 h-10 border-2 border-gold rounded-full flex justify-center">
