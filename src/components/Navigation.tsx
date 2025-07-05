@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 const Navigation = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -46,8 +48,39 @@ const Navigation = () => {
 
   return (
     <>
+      {/* Mobile Navigation */}
+      <div className="md:hidden">
+        <Sheet>
+          <SheetTrigger asChild>
+            <button
+              className={`fixed top-4 right-4 z-50 w-12 h-12 bg-background/90 backdrop-blur-sm border border-gold/50 rounded-full flex items-center justify-center transition-all duration-500 hover:bg-gold hover:text-background ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
+              }`}
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+          </SheetTrigger>
+          <SheetContent side="right" className="w-80 bg-background/95 backdrop-blur-md border-l border-gold/20">
+            <div className="flex flex-col items-center pt-20 space-y-8">
+              <div className="font-heading text-3xl font-bold text-gold mb-8">Nilam Abdul</div>
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`text-lg font-medium transition-luxury hover:text-gold w-full text-center py-3 ${
+                    activeSection === item.id ? 'text-gold border-b border-gold/50' : 'text-foreground/70'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          </SheetContent>
+        </Sheet>
+      </div>
+
       {/* Desktop Navigation */}
-      <nav className={`fixed top-6 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500 ${
+      <nav className={`hidden md:block fixed top-6 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
       }`}>
         <div className="bg-background/80 backdrop-blur-sm border border-border/50 rounded-full px-6 py-3">
