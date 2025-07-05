@@ -54,8 +54,8 @@ All colors MUST be HSL.
     --shadow-card: 0 10px 25px -5px hsl(0 0% 0% / 0.1);
     
     /* Typography Scale */
-    --font-heading: 'Playfair Display', serif;
-    --font-body: 'Inter', sans-serif;
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'DM Sans', sans-serif;
     
     /* Animations */
     --transition-luxury: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
