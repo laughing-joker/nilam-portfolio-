@@ -22,6 +22,7 @@ const Hero = () => {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ 
           backgroundImage: `url(${heroBg})`,
+          backgroundPosition: 'center 30%', // Focus on upper portion for face visibility
           transform: `translateY(${scrollY * 0.5}px)`
         }}
       />

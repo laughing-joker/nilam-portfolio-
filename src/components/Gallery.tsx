@@ -29,12 +29,12 @@ const Gallery = () => {
   }, []);
 
   const galleryImages = [
-    { src: gallery1, title: "Commercial Shoot", year: "2024", span: "col-span-2" },
-    { src: gallery2, title: "Portrait Session", year: "2024", span: "col-span-1" },
-    { src: gallery3, title: "Music Video", year: "2024", span: "col-span-1" },
-    { src: crdbCommercial, title: "CRDB Campaign", year: "2024", span: "col-span-2" },
-    { src: musicVideo, title: "Artist Collaboration", year: "2025", span: "col-span-1" },
-    { src: gallery4, title: "Fashion Editorial", year: "2024", span: "col-span-1" }
+    { src: gallery1, title: "Commercial Shoot", year: "2024" },
+    { src: gallery2, title: "Portrait Session", year: "2024" },
+    { src: gallery3, title: "Music Video", year: "2024" },
+    { src: crdbCommercial, title: "CRDB Campaign", year: "2024" },
+    { src: musicVideo, title: "Artist Collaboration", year: "2025" },
+    { src: gallery4, title: "Fashion Editorial", year: "2024" }
   ];
 
   return (
@@ -58,11 +58,13 @@ const Gallery = () => {
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-4 gap-4 auto-rows-[200px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[250px] sm:auto-rows-[200px]">
           {galleryImages.map((image, index) => (
             <div
               key={index}
-              className={`group relative overflow-hidden rounded-lg cursor-pointer ${image.span} transition-all duration-1000 ${
+              className={`group relative overflow-hidden rounded-lg cursor-pointer ${
+                index === 0 || index === 4 ? 'lg:col-span-2' : 'col-span-1'
+              } transition-all duration-1000 ${
                 isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
               }`}
               style={{ transitionDelay: `${index * 100}ms` }}
@@ -71,7 +73,7 @@ const Gallery = () => {
               <img 
                 src={image.src}
                 alt={image.title}
-                className="w-full h-full object-cover group-hover:scale-110 transition-luxury"
+                className="w-full h-full object-cover object-center group-hover:scale-110 transition-luxury"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-luxury" />
               <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-luxury transform translate-y-4 group-hover:translate-y-0">

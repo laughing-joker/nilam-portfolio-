@@ -45,12 +45,12 @@ const About = () => {
           <div className={`transition-all duration-1000 delay-300 ${
             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
           }`}>
-            <div className="relative group">
+            <div className="relative group max-w-md mx-auto lg:max-w-none">
               <div className="absolute inset-0 bg-gradient-gold rounded-lg transform rotate-3 group-hover:rotate-6 transition-luxury" />
               <img 
                 src={nilamPortrait}
                 alt="Nilam Abdul"
-                className="relative rounded-lg shadow-luxury transform group-hover:scale-105 transition-luxury w-full h-auto"
+                className="relative rounded-lg shadow-luxury transform group-hover:scale-105 transition-luxury w-full h-auto object-cover object-center aspect-[3/4] sm:aspect-[4/5] lg:aspect-auto lg:h-[600px]"
               />
             </div>
           </div>

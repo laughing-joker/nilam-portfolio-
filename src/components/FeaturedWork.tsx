@@ -82,12 +82,12 @@ const FeaturedWork = () => {
               }`}
               style={{ transitionDelay: `${project.delay}ms` }}
             >
-              <Card className="group bg-card border-border hover:border-gold transition-luxury hover-lift">
-                <div className="relative overflow-hidden">
+              <Card className="group bg-card border-border hover:border-gold transition-luxury hover-lift overflow-hidden">
+                <div className="relative overflow-hidden aspect-[4/3]">
                   <img 
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-luxury"
+                    className="w-full h-full object-cover object-center group-hover:scale-110 transition-luxury"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-luxury" />
                   <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-luxury transform translate-y-4 group-hover:translate-y-0">
