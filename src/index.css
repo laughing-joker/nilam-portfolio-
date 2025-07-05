@@ -2,39 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+/* Luxury Portfolio Design System - Black, Gold & White
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Luxury Color Palette */
+    --background: 0 0% 0%;  /* Deep Black */
+    --foreground: 0 0% 98%; /* Soft White */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 51 100% 50%; /* Metallic Gold */
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 0 0% 6%; /* Dark Grey */
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 0 0% 8%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 51 100% 50%; /* Gold Accent */
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 0 0% 15%;
+    --input: 0 0% 8%;
+    --ring: 51 100% 50%;
+
+    /* Custom Design Tokens */
+    --gold: 51 100% 50%;
+    --gold-muted: 45 85% 60%;
+    --gold-light: 51 100% 70%;
+    --gold-dark: 45 100% 35%;
+    
+    /* Gradients */
+    --gradient-gold: linear-gradient(135deg, hsl(51 100% 50%), hsl(45 85% 60%));
+    --gradient-dark: linear-gradient(135deg, hsl(0 0% 0%), hsl(0 0% 6%));
+    --gradient-hero: linear-gradient(180deg, hsl(0 0% 0% / 0.7), hsl(0 0% 0% / 0.9));
+    
+    /* Shadows & Effects */
+    --shadow-luxury: 0 25px 50px -12px hsl(51 100% 50% / 0.25);
+    --shadow-gold-glow: 0 0 30px hsl(51 100% 50% / 0.3);
+    --shadow-card: 0 10px 25px -5px hsl(0 0% 0% / 0.1);
+    
+    /* Typography Scale */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+    
+    /* Animations */
+    --transition-luxury: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.3s ease-out;
 
     --radius: 0.5rem;
 
@@ -100,6 +125,93 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-body;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+@layer utilities {
+  /* Typography */
+  .font-heading {
+    font-family: var(--font-heading);
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  /* Custom Colors */
+  .text-gold {
+    color: hsl(var(--gold));
+  }
+
+  .bg-gold {
+    background-color: hsl(var(--gold));
+  }
+
+  .border-gold {
+    border-color: hsl(var(--gold));
+  }
+
+  /* Gradients */
+  .bg-gradient-gold {
+    background: var(--gradient-gold);
+  }
+
+  .bg-gradient-dark {
+    background: var(--gradient-dark);
+  }
+
+  .bg-gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  /* Shadows & Effects */
+  .shadow-luxury {
+    box-shadow: var(--shadow-luxury);
+  }
+
+  .shadow-gold-glow {
+    box-shadow: var(--shadow-gold-glow);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Animations */
+  .transition-luxury {
+    transition: var(--transition-luxury);
+  }
+
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  /* Hero Text Effects */
+  .hero-title {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Hover Effects */
+  .hover-glow:hover {
+    box-shadow: var(--shadow-gold-glow);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Glass Effect */
+  .glass {
+    backdrop-filter: blur(10px);
+    background: hsl(0 0% 0% / 0.8);
   }
 }
